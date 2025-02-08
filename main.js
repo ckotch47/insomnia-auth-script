@@ -8,14 +8,14 @@ const PASSWORD = insomnia.globals.get("password")
 async function makeReq(req){
 	return await new Promise((resolve, reject) => {
 		insomnia.sendRequest(
-				req,
-				(err, resp) => {
-						if (err != null) {
-								reject(err);
-						} else {
-								resolve(resp);
-						}
+			req,
+			(err, resp) => {
+				if (err != null) {
+						reject(err);
+				} else {
+						resolve(resp);
 				}
+			}
 		);
 	});
 }
@@ -39,14 +39,14 @@ async function auth(){
 		url: BASE_URL + '/api/auth/login',
 		method: 'POST',
 		header: {
-				'Content-Type': 'application/json'
+			'Content-Type': 'application/json'
 		},
 		body: {
-				mode: 'raw',
-				raw: JSON.stringify({
-										"email": LOGIN,
-										"password": PASSWORD
-				})
+			mode: 'raw',
+			raw: JSON.stringify({
+				"email": LOGIN,
+				"password": PASSWORD
+			})
 		},
 	};
 	
@@ -83,13 +83,13 @@ async function refreshToken(){
 		url: BASE_URL + '/api/auth/refresh',
 		method: 'POST',
 		header: {
-				'Content-Type': 'application/json'
+			'Content-Type': 'application/json'
 		},
 		body: {
-				mode: 'raw',
-				raw: JSON.stringify({
-									"refreshToken": REFRESH_TOKEN
-				})
+			mode: 'raw',
+			raw: JSON.stringify({
+				"refreshToken": REFRESH_TOKEN
+			})
 		},
 	};
 	const refreshRes = await makeReq(refreshTokenReq)
